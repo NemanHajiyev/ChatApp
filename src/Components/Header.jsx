@@ -1,38 +1,40 @@
-import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
-import { auth } from '../Firebase/Firebase'
-import React from 'react'
+import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { auth } from '../Firebase/Firebase';
+import React from 'react';
 import { useAuthState } from "react-firebase-hooks/auth";
 
-
-
 const Chat = () => {
-    const handleClick = () => {
-        const provider = new GoogleAuthProvider()
-        signInWithPopup(auth, provider);
-    }
+    const handleClick = async () => {
+        const provider = new GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: "select_account" }); // Hesap seçme ekranını aç
 
-    const [user] = useAuthState(auth)
+        try {
+            await signInWithPopup(auth, provider);
+        } catch (error) {
+            console.error("Giriş hatası:", error.message);
+        }
+    };
+
+    const [user] = useAuthState(auth);
 
     return (
-        <div className='chat'>
+        <div className='header'>
             <header>
                 <h1>Sohbet tetbiqi</h1>
             </header>
             <div>
                 {user ? (
-                    <button
-                        onClick={() => signOut(auth)}>
-                        sign out
+                    <button onClick={() => signOut(auth)}>
+                        Sign out
                     </button>
                 ) : (
-                    <button
-                        onClick={handleClick}>
-                        Google ile giris ele
+                    <button onClick={handleClick}>
+                        Google ile giriş yap
                     </button>
                 )}
             </div>
         </div>
-    )
+    );
 }
 
-export default Chat
+export default Chat;

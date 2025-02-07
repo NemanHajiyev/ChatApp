@@ -1,8 +1,50 @@
-.chat {
-    border: 1px solid red;
-    padding: 0px 30px;
-    max-width: 900px;
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.app {
+    max-width: 1000px;
     width: 100%;
-    margin: 0 auto;
     height: 100vh;
+    border: 1px solid red;
+    margin: 0 auto;
+}
+
+.header {
+    padding: 5px 20px;
+    border: 1px solid rgb(0, 255, 140);
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat {
+    padding: 5px 20px;
+    border: 1px solid rgb(0, 144, 233);
+    height: auto;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.messages {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(162, 255, 0);
+
+}
+
+.messages img {
+    width: 40px;
+    height: 40px;
+}
+
+.messages {
+    color: red;
 }
