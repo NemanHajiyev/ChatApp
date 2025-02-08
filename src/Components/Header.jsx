@@ -1,7 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import { auth } from '../Firebase/Firebase';
 import React from 'react';
-import Chat from './Chat'
+import Chat from './Chat';
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const Header = () => {
@@ -20,24 +20,22 @@ const Header = () => {
 
     return (
         <div className='header'>
-            <header>
-                <h1>Sohbet tetbiqi</h1>
-            </header>
-            <div>
-                {user ? (
-                    <div>
-                        <button onClick={() => signOut(auth)}>
-                            Sign out
-                        </button>
-                        <Chat />
-                    </div>
-
-                ) : (
-                    <button onClick={handleClick}>
-                        Google ile giris ele
+            {user ? (
+                <div className='user-section'>
+                    <button className='logout-button' onClick={() => signOut(auth)}>
+                        Çıxış Elə
                     </button>
-                )}
-            </div>
+                    <Chat />
+                </div>
+            ) : (
+                <div className='login-section'>
+                    <h1>Söhbətgah Tətbiqinə Xoş Gəldiniz :) </h1>
+                    <h2>Davam etmək üçün zəhmət olmasa Google hesabınızla daxil olun.</h2>
+                    <button className='login-button' onClick={handleClick}>
+                        Google ile Giriş Elə
+                    </button>
+                </div>
+            )}
         </div>
     );
 }

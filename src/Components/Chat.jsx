@@ -11,7 +11,8 @@ const Chat = () => {
     const messageRef = useRef(null);
     const chatContainerRef = useRef(null);
 
-    const sendMessage = () => {
+    const sendMessage = (e) => {
+        e.preventDefault();
         if (!text.trim()) return;
         setDoc(
             doc(msgs),
@@ -21,19 +22,12 @@ const Chat = () => {
                 userId: auth.currentUser?.uid,
                 userPhoto: auth.currentUser?.photoURL
             }
-        )
-        setText('')
+        );
+        setText('');
     }
-
 
     useEffect(() => {
         messageRef.current.scrollIntoView({ behavior: "smooth" });
-    }, [messages]);
-
-    useEffect(() => {
-        if (chatContainerRef.current) {
-            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-        }
     }, [messages]);
 
     const Text = ({ doc }) => {
@@ -43,30 +37,30 @@ const Chat = () => {
                 <img src={doc.data().userPhoto} alt="" />
                 <h3>{doc.data().msg}</h3>
             </div>
-        )
+        );
     }
 
     return (
-        <div className='chat' ref={chatContainerRef}>
-            <div>
-                {
-                    messages?.docs.map((doc) => (
-                        <div className='messages' key={doc.id}>
-                            <Text doc={doc} />
-                        </div>
-                    ))
-                }
+        <div className='chat-container'>
+            <div className='chat' ref={chatContainerRef}>
+                {messages?.docs.map((doc) => (
+                    <div className='messages' key={doc.id}>
+                        <Text doc={doc} />
+                    </div>
+                ))}
                 <div ref={messageRef}></div>
             </div>
-            <div>
+            <form onClick={sendMessage} className='message-input'>
                 <input
                     value={text}
-                    onChange={(e) => { setText(e.target.value) }}
-                    type="text" />
-                <button onClick={sendMessage}>Send</button>
-            </div>
+                    onChange={(e) => setText(e.target.value)}
+                    type="text"
+                    placeholder="Mesaj yaz..."
+                />
+                <button >Göndər</button>
+            </form>
         </div>
-    )
+    );
 }
 
 export default Chat;
