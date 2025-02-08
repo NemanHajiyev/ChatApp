@@ -12,7 +12,8 @@ const Chat = () => {
     const chatContainerRef = useRef(null);
 
     const sendMessage = (e) => {
-        e.preventDefault();
+        e.preventDefault()
+
         if (!text.trim()) return;
         setDoc(
             doc(msgs),
@@ -57,7 +58,7 @@ const Chat = () => {
                     type="text"
                     placeholder="Mesaj yaz..."
                 />
-                <buttons>Göndər</buttons>
+                <button>Göndər</button>
             </form>
         </div>
     );
