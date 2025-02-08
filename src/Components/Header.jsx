@@ -12,7 +12,7 @@ const Header = () => {
         try {
             await signInWithPopup(auth, provider);
         } catch (error) {
-            console.error("Giris Xetasi:", error.message);
+            console.error("Giriş Xətaı:", error.message);
         }
     };
 

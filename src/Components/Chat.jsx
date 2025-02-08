@@ -57,7 +57,7 @@ const Chat = () => {
                     type="text"
                     placeholder="Mesaj yaz..."
                 />
-                <button >Göndər</button>
+                <buttons>Göndər</buttons>
             </form>
         </div>
     );
