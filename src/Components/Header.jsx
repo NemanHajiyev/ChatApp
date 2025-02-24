@@ -12,7 +12,7 @@ const Header = () => {
         try {
             await signInWithPopup(auth, provider);
         } catch (error) {
-            console.error("Giriş Xətaı:", error.message);
+            console.error("Giriş Xətası:", error.message);
         }
     };
 
@@ -23,7 +23,7 @@ const Header = () => {
             {user ? (
                 <div className='user-section'>
                     <button className='logout-button' onClick={() => signOut(auth)}>
-                        Çıxış Elə
+                        Çıxış et
                     </button>
                     <Chat />
                 </div>
@@ -32,7 +32,7 @@ const Header = () => {
                     <h1>Söhbətgah Tətbiqinə Xoş Gəldiniz :) </h1>
                     <h2>Davam etmək üçün zəhmət olmasa Google hesabınızla daxil olun.</h2>
                     <button className='login-button' onClick={handleClick}>
-                        Google ile Giriş Elə
+                        Google ile Giriş et
                     </button>
                 </div>
             )}
